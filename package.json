@@ -1,7 +1,7 @@
 {
   "name": "react-route-proyecto1",
   "version": "0.1.0",
-  "private": true,
+  "main": "index.js",
   "scripts": {
     "dev": "node index.js",
     "start": "react-scripts start  ",
@@ -13,6 +13,17 @@
     "migrations:run": "sequelize-cli db:migrate",
     "migrations:revert": "sequelize-cli db:migrate:undo",
     "migrations:delete": "sequelize-cli db:migrate:undo:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/faker": "^6.6.9",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.4",
@@ -43,8 +54,8 @@
     "sequelize-cli": "^6.2.0",
     "web-vitals": "^2.1.4"
   },
-    "engines": {
-    "node": "18"
+  "engines": {
+    "node": "16.19.1"
   },
   "eslintConfig": {
     "extends": [

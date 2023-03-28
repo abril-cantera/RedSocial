@@ -36,6 +36,14 @@ class User extends Model {
   static associate(models) {
     //
   }
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: USER_TABLE,
+      modelName: 'User',
+      timestamps: false
+    }
+  }
 }
 
 
