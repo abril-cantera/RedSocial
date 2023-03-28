@@ -6,6 +6,7 @@ import { LoginPage } from "./components/LogIn/LoginPage";
 import { LogoutPage } from "./components/LogOut/LogoutPage";
 import { ProfilePage } from "./components/Inicio/ProfilePage";
 import { SingUp } from "./components/SingUp/SingUp";
+import { NotFound } from './components/NotFound/NotFound'
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
               </AuthRoute>
             } />
 
-            <Route path="*" element={<p>Not found</p>} />
+            <Route path="*" element={<NotFound />} />
 
           </Routes>
         </AuthProvider>

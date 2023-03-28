@@ -14,7 +14,7 @@ const UserSchema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  name: {
+  nameUser: {
     type: DataTypes.STRING,
     allowNull: false,
   },
