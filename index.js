@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.json());
 
-const whitelist = ['http://18.118.149.101:3000/red/user', 'http://localhost:3000/#/'];
+const whitelist = ['http://18.118.149.101:3000/red/user', 'http://localhost:3000/#/', 'http://localhost:3000'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
