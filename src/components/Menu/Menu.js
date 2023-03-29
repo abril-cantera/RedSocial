@@ -4,9 +4,7 @@ import { useAuth } from "../Auth/auth";
 
 function Menu() {
   const auth = useAuth()
-  if (!auth.user) {
 
-  }
   return (
     <nav>
       <ul>
