@@ -3,12 +3,9 @@ import { useState } from "react";
 import './SingUp.css'
 
 export function SingUp() {
-  const [user, setUser] = useState([{
+  const [users, setUsers] = useState([{
     user: '',
-    nameUser: '',
-    lastName: '',
     email: '',
-    password: ''
   }])
 
   const [error, setError] = useState('');
@@ -24,20 +21,29 @@ export function SingUp() {
       },
     })
     const data = await response.json()
-    console.log(data);
-    setUser(data)
+    console.log(data[0].email);
+    setUsers(data)
+
+    // data.map((item, i) => {
+    //   if (item[i].user == e.target.value) {
+    //     console.log('No');
+    //   } else {
+    //     console.log(item, 'map');
+    //   }
+    // })
+
     if (data.length > 0) {
-      setError('El email ya ha sido registrado');
-      console.log(error);
+      setError(error, 'El email ya ha sido registrado');
       console.log(data[0].user);
     } else {
-      console.log(user);
+      console.log('else');
       console.log(data);
-      setUser(data)
+      setUsers(data)
     }
   }
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
+    setUsers({ ...users, [e.target.name]: e.target.value })
+    console.log(e.target.value);
   }
 
   return (
@@ -49,13 +55,28 @@ export function SingUp() {
           <input
             name='usuario'
             placeholder='Usuario'
-            value={user.user}
+            value={users.user}
             onChange={handleChange}
           />
-          <input placeholder='Nombre' type='text' />
-          <input placeholder='Apellido' type='text' />
-          <input placeholder='Email' type='email' />
-          <input placeholder='password' type='password' />
+          <input
+            placeholder='Nombre'
+            type='text'
+          />
+          <input
+            placeholder='Apellido'
+            type='text'
+          />
+          <input
+            name='correo'
+            placeholder='Email'
+            type='email'
+            value={users.email}
+            onChange={handleChange}
+          />
+          <input
+            placeholder='password'
+            type='password'
+          />
 
           <button type="submit" >Registrarse</button>
         </form>

@@ -16,21 +16,9 @@ module.exports = {
         unique: true,
         allowNull: false,
       },
-      nameUser: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: Sequelize.DataTypes.STRING,
-        allowNull: false,
-      },
       email: {
         type: Sequelize.DataTypes.STRING,
         unique: true,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
     });

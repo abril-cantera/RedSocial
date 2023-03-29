@@ -14,19 +14,7 @@ const UserSchema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  nameUser: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  lastName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
