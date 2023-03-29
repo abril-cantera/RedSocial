@@ -11,11 +11,11 @@ export function SingUp() {
     password: ''
   }])
 
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = 'http://18.118.149.101:3000/red/user'
+    const url = 'http://18.218.88.225:3000/red/user'
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -26,19 +26,19 @@ export function SingUp() {
     const data = await response.json()
     console.log(data);
     setUser(data)
-    // if (data.length > 0) {
-    //   setError('El email ya ha sido registrado');
-    //   console.log(error);
-    //   console.log(data[0].user);
-    // } else {
-    //   console.log(user);
-    //   console.log(data);
-    //   setUser(data)
-    // }
+    if (data.length > 0) {
+      setError('El email ya ha sido registrado');
+      console.log(error);
+      console.log(data[0].user);
+    } else {
+      console.log(user);
+      console.log(data);
+      setUser(data)
+    }
   }
-  // const handleChange = (e) => {
-  //   setUser({ ...user, [e.target.name]: e.target.value })
-  // }
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
 
   return (
     <div>
@@ -50,7 +50,7 @@ export function SingUp() {
             name='usuario'
             placeholder='Usuario'
             value={user.user}
-          // onChange={handleChange}
+            onChange={handleChange}
           />
           <input placeholder='Nombre' type='text' />
           <input placeholder='Apellido' type='text' />
