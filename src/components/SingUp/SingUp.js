@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './SingUp.css'
 
 export function SingUp() {
@@ -19,52 +19,58 @@ export function SingUp() {
     })
     const data = await response.json()
     console.log(data);
-    console.log(data[0].user);
-    console.log(data[0].email);
     setUsers(users)
 
 
   }
-  useEffect(() => {
-    getData()
-  }, []);
+  getData()
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   // setUsuario(event.target.usuario.value)
+  //   // setCorreo(event.target.correo.value)
 
+  //   const url = 'http://18.218.88.225:3000/red/user'
+  //   const response = await fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       'user': user,
+  //       'email': email
+  //     })
+  //   })
+  //   const data = await response.json()
+  //   console.log(data);
+  //   setUsers(users)
+
+  // }
+  const postData = async () => {
     const url = 'http://18.218.88.225:3000/red/user'
     const response = await fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'user': user,
-        'email': email
-      })
+      }
     })
     const data = await response.json()
-    console.log(data);
-    setUsers(users)
-  }
-  // const postData = (data) => {
-  //   data.map((item) => {
-  //     if (item.user === usuario || item.email === correo) {
-  //       console.log('Repetido');
-  //     } else {
-  //       console.log('Guardado');
-  //       console.log(usuario);
-  //       console.log(correo);
-  //     }
-  //   })
-  // }
 
+    data.map((item) => {
+      // const itemsArray = Object.values(item)
+      // console.log(itemsArray);
+      console.log(item);
+      console.log(user);
+      console.log(email);
+
+    })
+  }
 
   return (
     <div>
       <h1>SingUp</h1>
       <section>
-        <form onSubmit={handleSubmit} className='registro'>
+        <form onSubmit={postData} className='registro'>
           <label>
             User:
             <input
