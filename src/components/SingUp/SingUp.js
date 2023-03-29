@@ -11,7 +11,7 @@ export function SingUp() {
     password: ''
   }])
 
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,19 +24,21 @@ export function SingUp() {
       },
     })
     const data = await response.json()
-    if (data.length > 0) {
-      setError('El email ya ha sido registrado');
-      console.log(error);
-      console.log(data[0].user);
-    } else {
-      console.log(user);
-      console.log(data);
-      setUser(data)
-    }
+    console.log(data);
+    setUser(data)
+    // if (data.length > 0) {
+    //   setError('El email ya ha sido registrado');
+    //   console.log(error);
+    //   console.log(data[0].user);
+    // } else {
+    //   console.log(user);
+    //   console.log(data);
+    //   setUser(data)
+    // }
   }
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
+  // const handleChange = (e) => {
+  //   setUser({ ...user, [e.target.name]: e.target.value })
+  // }
 
   return (
     <div>
@@ -48,7 +50,7 @@ export function SingUp() {
             name='usuario'
             placeholder='Usuario'
             value={user.user}
-            onChange={handleChange}
+          // onChange={handleChange}
           />
           <input placeholder='Nombre' type='text' />
           <input placeholder='Apellido' type='text' />
