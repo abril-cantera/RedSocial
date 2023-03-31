@@ -14,7 +14,7 @@ export function SingUp() {
   const exito = 'Registrado con exito'
 
   const getDataa = async (data) => {
-    const url = 'http://18.218.88.225:3000/red/user'
+    const url = 'http://18.218.206.49:3000/red/user'
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -31,7 +31,7 @@ export function SingUp() {
     setUser(event.target.usuario.value)
     setEmail(event.target.correo.value)
 
-    const url = 'http://18.218.88.225:3000/red/user'
+    const url = 'http://18.218.206.49:3000/red/user'
     const response = await fetch(url)
     const data = await response.json()
     getDataa()
@@ -58,7 +58,7 @@ export function SingUp() {
 
   // const handleSubmit = async () => {
 
-  //   const url = 'http://18.218.88.225:3000/red/user'
+  //   const url = 'http://18.218.206.49:3000/red/user'
   //   const response = await fetch(url, {
   //     method: 'POST',
   //     headers: {
