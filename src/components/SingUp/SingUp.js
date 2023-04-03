@@ -8,7 +8,7 @@ export function SingUp() {
   const [name, setName] = useState('')
   const [correo, setCorreo] = useState('')
 
-  const url = 'http://18.218.206.49:3000/red/user'
+  const url = 'http://18.191.55.134:3000/red/user'
 
   async function getData(evento) {
     evento.preventDefault();
