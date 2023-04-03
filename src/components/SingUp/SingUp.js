@@ -19,46 +19,45 @@ export function SingUp() {
       }
     });
     const data = await response.json()
-    data.map(item => {
-      switch (true) {
-        case name === item.user:
-          console.log('User Repetido')
-        case correo === item.email:
-          console.log('Email Repetido');
-          break;
+    console.log(data);
+    const verifyUser = data.some((item) => item.user === name)
+    const verifyEmail = data.some((item) => item.email === correo)
 
-        default:
-          console.log('Error');
-          break;
-      }
-    })
-    // data.map((item) => {
+    switch (true) {
+      case (verifyUser === true && verifyEmail === true):
+        console.log('Usuario y correo repetido');
+        break;
+      case (verifyUser === true && verifyEmail === false):
+        console.log('Usuario repetido');
+        break;
+      case (verifyUser === false && verifyEmail === true):
+        console.log('Correo repetido');
+        break;
+      case (verifyUser === false && verifyEmail === false):
+        console.log('Exitoso');
+        postData()
+        break;
 
-    // if (item.user === name) {
-    //   console.log('Repetido')
-    // } else if (item.email === correo) {
-    //   console.log('Repetido');
-    // }
-
-    // })
+      default:
+        break;
+    }
     setInfo(info)
   }
 
-  // const manejarEnvio = async () => {
-
-  //   const response = await fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       'user': name,
-  //       'email': correo
-  //     })
-  //   })
-  //   const data = await response.json()
-  //   console.log(data);
-  // };
+  const postData = async () => {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'user': name,
+        'email': correo
+      })
+    })
+    const data = await response.json()
+    console.log(data);
+  };
 
   return (
     <div>

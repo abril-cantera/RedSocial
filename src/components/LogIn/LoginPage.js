@@ -6,10 +6,37 @@ export function LoginPage() {
   const auth = useAuth()
   const [username, setUsername] = useState('')
 
-  const login = (e) => {
+  const [info, setInfo] = useState([])
+
+  const url = 'http://18.191.55.134:3000/red/user'
+  async function getData(e) {
     e.preventDefault()
-    auth.login({ username });
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    const data = await response.json()
+    console.log(data);
+    setInfo(info)
+    const verifyUser = data.some((item) => item.user === username)
+
+    switch (true) {
+      case verifyUser === true:
+        auth.login({ username });
+        break;
+      case verifyUser === false:
+        console.log('Usuario no registrado');
+        break;
+
+      default:
+        break;
+    }
   }
+
+
+
 
   if (auth.user) {
     return <Navigate to='/profile' />
@@ -19,9 +46,8 @@ export function LoginPage() {
     <>
       <h1>Login</h1>
 
-      <form onSubmit={login}>
-        <input value={username} onChange={e => setUsername(e.target.value)} />
-        <input placeholder='Password' />
+      <form onSubmit={getData}>
+        <input placeholder="Usuario" value={username} onChange={e => setUsername(e.target.value)} />
 
         <button type="submit">Entrar</button>
       </form>
