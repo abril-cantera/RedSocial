@@ -7,7 +7,6 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 99;
 }
 
 .nav a {
@@ -16,7 +15,7 @@ header {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  margin-left: 40px;
+  margin: 0 20px;
 }
 
 .nav a::after {

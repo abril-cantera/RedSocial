@@ -33,7 +33,9 @@ export function LoginPage() {
         localStorage.setItem('loggedUser', JSON.stringify(username))
         break;
       case verifyUser === false:
-        MySwal.fire('Usuario no registrado');
+        MySwal.fire({
+          title: 'Usuario no registrado'
+        });
         break;
 
       default:

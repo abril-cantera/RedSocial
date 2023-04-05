@@ -8,6 +8,7 @@ import './../LogIn/LoginPage.css'
 export function SingUp() {
   const [info, setInfo] = useState([])
 
+  const [nameComplete, setNameComplete] = useState('')
   const [name, setName] = useState('')
   const [correo, setCorreo] = useState('')
 
@@ -28,22 +29,32 @@ export function SingUp() {
 
     switch (true) {
       case (verifyUser === true && verifyEmail === true):
-        MySwal.fire('Usuario y correo ya registrados');
+        MySwal.fire({
+          title: 'Usuario y correo ya registrados',
+          customContainerClass: 'mi-swal'
+        });
         break;
       case (verifyUser === true && verifyEmail === false):
-        MySwal.fire('El usuario ya esta registrado');
+        MySwal.fire({
+          title: 'El usuario ya esta registrado'
+        });
         break;
       case (verifyUser === false && verifyEmail === true):
-        MySwal.fire('El correo ya esta registrado');
+        MySwal.fire({
+          title: 'El correo ya esta registrado'
+        });
         break;
       case (verifyUser === false && verifyEmail === false):
-        MySwal.fire('Registro exitoso');
+        MySwal.fire({
+          title: 'Registro exitoso'
+        });
         postData()
         break;
 
       default:
         break;
     }
+
     setInfo(info)
   }
 
@@ -54,12 +65,14 @@ export function SingUp() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        'name': nameComplete,
         'user': name,
         'email': correo
       })
     })
     const data = await response.json()
     console.log(data);
+
   };
 
   return (
@@ -71,6 +84,10 @@ export function SingUp() {
             <div className="input-box">
               <input
                 type='text'
+                value={nameComplete}
+                onChange={(event) => {
+                  setNameComplete(event.target.value);
+                }}
                 required
               />
               <label>Nombre y Apellido</label>
