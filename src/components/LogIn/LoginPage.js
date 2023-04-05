@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Navigate } from 'react-router-dom'
 import { useAuth } from "../Auth/auth";
+import './LoginPage.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 export function LoginPage() {
   const auth = useAuth()
   const [username, setUsername] = useState('')
 
   const [info, setInfo] = useState([])
+
+
 
   const url = 'http://18.191.55.134:3000/red/user'
   async function getData(e) {
@@ -18,24 +24,23 @@ export function LoginPage() {
       }
     });
     const data = await response.json()
-    console.log(data);
     setInfo(info)
     const verifyUser = data.some((item) => item.user === username)
 
     switch (true) {
       case verifyUser === true:
         auth.login({ username });
+        localStorage.setItem('loggedUser', JSON.stringify(username))
         break;
       case verifyUser === false:
-        console.log('Usuario no registrado');
+        MySwal.fire('Usuario no registrado');
         break;
 
       default:
         break;
     }
+
   }
-
-
 
 
   if (auth.user) {
@@ -44,13 +49,23 @@ export function LoginPage() {
 
   return (
     <>
-      <h1>Login</h1>
+      <div className="wrapper">
+        <div className="form-box login">
+          <h1>Login</h1>
 
-      <form onSubmit={getData}>
-        <input placeholder="Usuario" value={username} onChange={e => setUsername(e.target.value)} />
+          <form onSubmit={getData}>
+            <div className="input-box">
+              <span className="icon">
+                <ion-icon name="person"></ion-icon>
+              </span>
+              <input value={username} onChange={e => setUsername(e.target.value)} required />
+              <label>Usuario</label>
+            </div>
 
-        <button type="submit">Entrar</button>
-      </form>
+            <button className="btn" type="submit">Entrar</button>
+          </form>
+        </div>
+      </div>
     </>
   )
 }

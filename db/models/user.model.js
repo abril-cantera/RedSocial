@@ -10,6 +10,10 @@ const UserSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   user: {
     type: DataTypes.STRING,
     allowNull: false,

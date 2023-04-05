@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from "react";
-import './SingUp.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+import './../LogIn/LoginPage.css'
 
 export function SingUp() {
   const [info, setInfo] = useState([])
@@ -25,16 +28,16 @@ export function SingUp() {
 
     switch (true) {
       case (verifyUser === true && verifyEmail === true):
-        console.log('Usuario y correo repetido');
+        MySwal.fire('Usuario y correo ya registrados');
         break;
       case (verifyUser === true && verifyEmail === false):
-        console.log('Usuario repetido');
+        MySwal.fire('El usuario ya esta registrado');
         break;
       case (verifyUser === false && verifyEmail === true):
-        console.log('Correo repetido');
+        MySwal.fire('El correo ya esta registrado');
         break;
       case (verifyUser === false && verifyEmail === false):
-        console.log('Exitoso');
+        MySwal.fire('Registro exitoso');
         postData()
         break;
 
@@ -60,58 +63,51 @@ export function SingUp() {
   };
 
   return (
-    <div>
-      <h1>SingUp</h1>
-      <section>
-        <form onSubmit={getData} className='registro'>
-          <label>
-            User:
-            <input
-              type='text'
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type='email'
-              value={correo}
-              onChange={(event) => {
-                setCorreo(event.target.value);
-              }}
-            />
-          </label>
-          <button type="submit" >Registrarse</button>
-        </form>
-      </section>
-    </div>
+    <>
+      <div className="wrapper">
+        <div className="form-box login">
+          <h1>SingUp</h1>
+          <form onSubmit={getData} className='registro'>
+            <div className="input-box">
+              <input
+                type='text'
+                required
+              />
+              <label>Nombre y Apellido</label>
+            </div>
+            <div className="input-box">
+              <span className="icon">
+                <ion-icon name="person"></ion-icon>
+              </span>
+              <input
+                type='text'
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+                required
+              />
+              <label>User</label>
+            </div>
+            <div className="input-box">
+              <span className="icon">
+                <ion-icon name="mail"></ion-icon>
+              </span>
+              <input
+                type='email'
+                value={correo}
+                onChange={(event) => {
+                  setCorreo(event.target.value);
+                }}
+                required
+              />
+              <label>Email</label>
+            </div>
+            <button className="btn" type="submit" >Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </>
 
   );
 }
-
-
-
-
-
-
-
-// const handleSubmit = async () => {
-
-//   const url = 'http://18.218.206.49:3000/red/user'
-//   const response = await fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       'user': user,
-//       'email': email
-//     })
-//   })
-//   const data = await response.json()
-//   console.log(data);
-//   setUsers(users)
-// }

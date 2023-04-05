@@ -7,6 +7,7 @@ export function LogoutPage() {
   const logout = (e) => {
     e.preventDefault()
     auth.logout()
+    localStorage.removeItem('loggedUser')
   }
   return (
     <>

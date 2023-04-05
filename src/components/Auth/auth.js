@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 import { Navigate, useNavigate } from 'react-router-dom'
 
 
@@ -8,9 +8,18 @@ function AuthProvider({ children }) {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const username = JSON.parse(loggedUserJSON)
+      setUser(username)
+    }
+  }, [])
+
   const login = ({ username }) => {
     setUser({ username })
     navigate('/profile')
+    localStorage.setItem('loggedUser', JSON.stringify(username))
   }
 
   const logout = () => {
