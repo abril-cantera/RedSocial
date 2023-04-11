@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthRoute } from "../Auth/auth";
-import { cargarImage } from "./cargarImage";
-
+import './profilePage.css'
 export function ProfilePage() {
-  const [imagen, setImagen] = useState(null);
+  const [info, setInfo] = useState([])
 
-  const manejarSeleccionImagen = (evento) => {
-    setImagen(evento.target.files[0]);
-  };
+  const getImage = async () => {
+    const url = 'http://18.191.55.134:3000/red/user'
 
-  const manejarEnvioImagen = async () => {
-    const resultado = await cargarImage(imagen);
-    console.log(resultado);
-  };
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    const data = await response.json()
+    console.log(data);
+    setInfo(data);
+  }
+
+  useEffect(() => {
+    getImage()
+  }, []);
+
   return (
     <AuthRoute>
       <div>
         <section>
-          <div>
-            <input type="file" onChange={manejarSeleccionImagen} />
-            <button onClick={manejarEnvioImagen}>Cargar imagen</button>
-          </div>
+          {
+            info.map(item =>
+              <section key={item.id}>
+                <img className="img" src={item.image} alt="Imagen de perfil" />
+              </section>
+            )
+          }
         </section>
-        <h2>
-          nombre
-        </h2>
       </div>
     </AuthRoute>
   )

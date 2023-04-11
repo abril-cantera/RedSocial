@@ -7,19 +7,23 @@ const AuthContext = createContext()
 function AuthProvider({ children }) {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
+  const [userbById, setUserById] = useState(null)
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    const loggedUserJSON = localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
       const username = JSON.parse(loggedUserJSON)
+      var userId = JSON.parse(loggedUserJSON)
       setUser(username)
+      setUserById(userId)
     }
   }, [])
 
-  const login = ({ username }) => {
+  const login = ({ username, userId }) => {
     setUser({ username })
+    setUserById({ userId })
     navigate('/profile')
-    localStorage.setItem('loggedUser', JSON.stringify(username))
+    localStorage.setItem('loggedUser', JSON.stringify(userId, username))
   }
 
   const logout = () => {
@@ -27,7 +31,7 @@ function AuthProvider({ children }) {
     navigate('/')
   }
 
-  const auth = { user, login, logout }
+  const auth = { user, userbById, login, logout }
 
   return (
     <AuthContext.Provider value={auth}>

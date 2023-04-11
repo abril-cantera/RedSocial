@@ -67,7 +67,8 @@ export function SingUp() {
       body: JSON.stringify({
         'name': nameComplete,
         'user': name,
-        'email': correo
+        'email': correo,
+        'image': 'https://i.pinimg.com/originals/e7/b2/d1/e7b2d14bd707337b544140c2a3459ec0.png'
       })
     })
     const data = await response.json()

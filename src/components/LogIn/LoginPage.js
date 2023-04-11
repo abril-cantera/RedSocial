@@ -9,6 +9,7 @@ const MySwal = withReactContent(Swal)
 export function LoginPage() {
   const auth = useAuth()
   const [username, setUsername] = useState('')
+  const [userId, setUserId] = useState('')
 
   const [info, setInfo] = useState([])
 
@@ -25,12 +26,14 @@ export function LoginPage() {
     });
     const data = await response.json()
     setInfo(info)
+    setUserId(info.id)
     const verifyUser = data.some((item) => item.user === username)
+
 
     switch (true) {
       case verifyUser === true:
-        auth.login({ username });
-        localStorage.setItem('loggedUser', JSON.stringify(username))
+        auth.login({ username, userId });
+        localStorage.setItem('loggedUser', JSON.stringify({ id: userId, user: username }))
         break;
       case verifyUser === false:
         MySwal.fire({
