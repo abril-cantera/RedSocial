@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node index.js",
     "start": "react-scripts start  ",
-    "build": "react-scripts build",
+    "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint",
@@ -59,7 +59,10 @@
     "sequelize-cli": "^6.2.0",
     "sweetalert2": "^11.7.3",
     "sweetalert2-react-content": "^5.0.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
   },
   "engines": {
     "node": "16.19.1"
